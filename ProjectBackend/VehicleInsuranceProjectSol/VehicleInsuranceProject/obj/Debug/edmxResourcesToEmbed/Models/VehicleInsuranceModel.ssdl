@@ -1,0 +1,398 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="db_ProjectGladiatorModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tbl_Admin">
+    <Key>
+      <PropertyRef Name="Email" />
+    </Key>
+    <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="tbl_Claims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Mobile_No" Type="varchar" MaxLength="200" />
+    <Property Name="Reason_of_Claim" Type="varchar" MaxLength="200" />
+    <Property Name="Date_Of_Claim" Type="date" Nullable="false" />
+    <Property Name="Claim_Approved" Type="varchar" MaxLength="10" />
+    <Property Name="Claim_Amount" Type="int" Nullable="false" />
+    <Property Name="Pol_Id" Type="int" />
+    <Property Name="Customer_Id" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_Payment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Cust_Id" Type="int" />
+    <Property Name="Pol_Id" Type="int" />
+    <Property Name="Payment_Date" Type="date" Nullable="false" />
+    <Property Name="Payment_Amount" Type="int" Nullable="false" />
+    <Property Name="Payment_Status" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="tbl_Policies">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Policy_Type" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Duration" Type="int" Nullable="false" />
+    <Property Name="Veh_Id" Type="int" />
+    <Property Name="Policy_Amount" Type="int" Nullable="false" />
+    <Property Name="Policy_Date" Type="date" Nullable="false" />
+    <Property Name="Policy_Purchase_Date" Type="date" Nullable="false" />
+    <Property Name="Total_IDV" Type="int" Nullable="false" />
+    <Property Name="Policy_Expiry_Date" Type="date" />
+    <Property Name="Approved_By" Type="varchar" MaxLength="100" />
+    <Property Name="Policy_Approve_Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="Policy_Payment_Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="Cust_Id" Type="int" />
+    <Property Name="Prev_Policy" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_RenewPolicies">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Policy_Type" Type="varchar" MaxLength="200" />
+    <Property Name="Duration" Type="int" />
+    <Property Name="Veh_Id" Type="int" />
+    <Property Name="Policy_Amount" Type="int" Nullable="false" />
+    <Property Name="Policy_StartDate" Type="date" />
+    <Property Name="Policy_Purchase_Date" Type="date" />
+    <Property Name="Total_IDV" Type="int" />
+    <Property Name="Policy_Expiry_Date" Type="date" />
+    <Property Name="Approved_By" Type="varchar" MaxLength="100" />
+    <Property Name="Policy_Approve_Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="Policy_Payment_Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="previousPolicyId" Type="int" />
+    <Property Name="Cust_Id" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Firstname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Lastname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="200" />
+    <Property Name="Date_of_Birth" Type="date" Nullable="false" />
+    <Property Name="Contact" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Address" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_Vehicle_Price">
+    <Key>
+      <PropertyRef Name="Vehicle_Model" />
+    </Key>
+    <Property Name="Vehicle_Model" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Vehicle_Showroom_Price" Type="int" Nullable="false" />
+    <Property Name="Vehicle_Age" Type="int" />
+  </EntityType>
+  <EntityType Name="tbl_VehicleInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Vehicle_Type" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="Manufacturer" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Veh_Model" Type="varchar" MaxLength="200" />
+    <Property Name="Driving_Licence" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Purchase_Date" Type="date" Nullable="false" />
+    <Property Name="Registration_Number" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Engine_No" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="ChasisNo" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Cust_Id" Type="int" />
+  </EntityType>
+  <Association Name="FK__tbl_Claim__Custo__0E391C95">
+    <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="0..1" />
+    <End Role="tbl_Claims" Type="Self.tbl_Claims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbl_Claims">
+        <PropertyRef Name="Customer_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_Claim__Pol_I__0D44F85C">
+    <End Role="tbl_Policies" Type="Self.tbl_Policies" Multiplicity="0..1" />
+    <End Role="tbl_Claims" Type="Self.tbl_Claims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Policies">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbl_Claims">
+        <PropertyRef Name="Pol_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_Payme__Cust___0880433F">
+    <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbl_Payment" Type="Self.tbl_Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbl_Payment">
+        <PropertyRef Name="Cust_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_Payme__Pol_I__09746778">
+    <End Role="tbl_Policies" Type="Self.tbl_Policies" Multiplicity="0..1" />
+    <End Role="tbl_Payment" Type="Self.tbl_Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Policies">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbl_Payment">
+        <PropertyRef Name="Pol_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_Polic__Cust___05A3D694">
+    <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="0..1" />
+    <End Role="tbl_Policies" Type="Self.tbl_Policies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbl_Policies">
+        <PropertyRef Name="Cust_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_Polic__Veh_I__02C769E9">
+    <End Role="tbl_VehicleInfo" Type="Self.tbl_VehicleInfo" Multiplicity="0..1" />
+    <End Role="tbl_Policies" Type="Self.tbl_Policies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_VehicleInfo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbl_Policies">
+        <PropertyRef Name="Veh_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_Renew__Cust___14E61A24">
+    <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="0..1" />
+    <End Role="tbl_RenewPolicies" Type="Self.tbl_RenewPolicies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbl_RenewPolicies">
+        <PropertyRef Name="Cust_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_Renew__previ__13F1F5EB">
+    <End Role="tbl_Policies" Type="Self.tbl_Policies" Multiplicity="0..1" />
+    <End Role="tbl_RenewPolicies" Type="Self.tbl_RenewPolicies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Policies">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbl_RenewPolicies">
+        <PropertyRef Name="previousPolicyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_Renew__Veh_I__11158940">
+    <End Role="tbl_VehicleInfo" Type="Self.tbl_VehicleInfo" Multiplicity="0..1" />
+    <End Role="tbl_RenewPolicies" Type="Self.tbl_RenewPolicies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_VehicleInfo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbl_RenewPolicies">
+        <PropertyRef Name="Veh_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_Vehic__Cust___7E02B4CC">
+    <End Role="tbl_User" Type="Self.tbl_User" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tbl_VehicleInfo" Type="Self.tbl_VehicleInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tbl_VehicleInfo">
+        <PropertyRef Name="Cust_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tbl_Vehic__Veh_M__7D0E9093">
+    <End Role="tbl_Vehicle_Price" Type="Self.tbl_Vehicle_Price" Multiplicity="0..1" />
+    <End Role="tbl_VehicleInfo" Type="Self.tbl_VehicleInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Vehicle_Price">
+        <PropertyRef Name="Vehicle_Model" />
+      </Principal>
+      <Dependent Role="tbl_VehicleInfo">
+        <PropertyRef Name="Veh_Model" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_activateStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_claimApprovewithAmount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="amount" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_deactivatePolicy" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_fetchVehiclesOfUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_passwordReset" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Email" Type="varchar" Mode="In" />
+    <Parameter Name="Password" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_passwordResetUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Email" Type="varchar" Mode="In" />
+    <Parameter Name="Password" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="sp_paymentStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_paymentStatuses" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_paymentStatusesFinal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_paymentStatusesforRenew" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_PaymentStatuss" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="us_claimApprove" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="us_claimApprovewithAmount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+    <Parameter Name="amount" Type="int" Mode="In" />
+  </Function>
+  <Function Name="us_claimDecline" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="us_ClaimDetailForUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="us_claimDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="us_claimDetailsofAllUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="usp_DeactivatePolicy" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_GetPolicyDetailsForUserDashboard" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_GetPolicyDetailsForUserDashboard1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_GetPolicyDetailsForUserDashboardWithReg" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_GetRoleDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="usp_RenewDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="db_ProjectGladiatorModelStoreContainer">
+    <EntitySet Name="tbl_Admin" EntityType="Self.tbl_Admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Claims" EntityType="Self.tbl_Claims" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Payment" EntityType="Self.tbl_Payment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Policies" EntityType="Self.tbl_Policies" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_RenewPolicies" EntityType="Self.tbl_RenewPolicies" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_User" EntityType="Self.tbl_User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Vehicle_Price" EntityType="Self.tbl_Vehicle_Price" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_VehicleInfo" EntityType="Self.tbl_VehicleInfo" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__tbl_Claim__Custo__0E391C95" Association="Self.FK__tbl_Claim__Custo__0E391C95">
+      <End Role="tbl_User" EntitySet="tbl_User" />
+      <End Role="tbl_Claims" EntitySet="tbl_Claims" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_Claim__Pol_I__0D44F85C" Association="Self.FK__tbl_Claim__Pol_I__0D44F85C">
+      <End Role="tbl_Policies" EntitySet="tbl_Policies" />
+      <End Role="tbl_Claims" EntitySet="tbl_Claims" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_Payme__Cust___0880433F" Association="Self.FK__tbl_Payme__Cust___0880433F">
+      <End Role="tbl_User" EntitySet="tbl_User" />
+      <End Role="tbl_Payment" EntitySet="tbl_Payment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_Payme__Pol_I__09746778" Association="Self.FK__tbl_Payme__Pol_I__09746778">
+      <End Role="tbl_Policies" EntitySet="tbl_Policies" />
+      <End Role="tbl_Payment" EntitySet="tbl_Payment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_Polic__Cust___05A3D694" Association="Self.FK__tbl_Polic__Cust___05A3D694">
+      <End Role="tbl_User" EntitySet="tbl_User" />
+      <End Role="tbl_Policies" EntitySet="tbl_Policies" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_Polic__Veh_I__02C769E9" Association="Self.FK__tbl_Polic__Veh_I__02C769E9">
+      <End Role="tbl_VehicleInfo" EntitySet="tbl_VehicleInfo" />
+      <End Role="tbl_Policies" EntitySet="tbl_Policies" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_Renew__Cust___14E61A24" Association="Self.FK__tbl_Renew__Cust___14E61A24">
+      <End Role="tbl_User" EntitySet="tbl_User" />
+      <End Role="tbl_RenewPolicies" EntitySet="tbl_RenewPolicies" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_Renew__previ__13F1F5EB" Association="Self.FK__tbl_Renew__previ__13F1F5EB">
+      <End Role="tbl_Policies" EntitySet="tbl_Policies" />
+      <End Role="tbl_RenewPolicies" EntitySet="tbl_RenewPolicies" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_Renew__Veh_I__11158940" Association="Self.FK__tbl_Renew__Veh_I__11158940">
+      <End Role="tbl_VehicleInfo" EntitySet="tbl_VehicleInfo" />
+      <End Role="tbl_RenewPolicies" EntitySet="tbl_RenewPolicies" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_Vehic__Cust___7E02B4CC" Association="Self.FK__tbl_Vehic__Cust___7E02B4CC">
+      <End Role="tbl_User" EntitySet="tbl_User" />
+      <End Role="tbl_VehicleInfo" EntitySet="tbl_VehicleInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tbl_Vehic__Veh_M__7D0E9093" Association="Self.FK__tbl_Vehic__Veh_M__7D0E9093">
+      <End Role="tbl_Vehicle_Price" EntitySet="tbl_Vehicle_Price" />
+      <End Role="tbl_VehicleInfo" EntitySet="tbl_VehicleInfo" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

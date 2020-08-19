@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="421cb1864c154977b802615c4331fd81" Name="Diagram1">
+        <EntityTypeShape EntityType="db_ProjectGladiatorModel.tbl_Admin" Width="1.5" PointX="5.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_ProjectGladiatorModel.tbl_Claims" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_ProjectGladiatorModel.tbl_Payment" Width="1.5" PointX="6" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_ProjectGladiatorModel.tbl_Policies" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_ProjectGladiatorModel.tbl_RenewPolicies" Width="1.5" PointX="8.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_ProjectGladiatorModel.tbl_User" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_ProjectGladiatorModel.tbl_Vehicle_Price" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_ProjectGladiatorModel.tbl_VehicleInfo" Width="1.5" PointX="6" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="db_ProjectGladiatorModel.FK__tbl_Claim__Custo__0E391C95" ManuallyRouted="false" />
+        <AssociationConnector Association="db_ProjectGladiatorModel.FK__tbl_Claim__Pol_I__0D44F85C" ManuallyRouted="false" />
+        <AssociationConnector Association="db_ProjectGladiatorModel.FK__tbl_Payme__Cust___0880433F" ManuallyRouted="false" />
+        <AssociationConnector Association="db_ProjectGladiatorModel.FK__tbl_Payme__Pol_I__09746778" ManuallyRouted="false" />
+        <AssociationConnector Association="db_ProjectGladiatorModel.FK__tbl_Polic__Cust___05A3D694" ManuallyRouted="false" />
+        <AssociationConnector Association="db_ProjectGladiatorModel.FK__tbl_Polic__Veh_I__02C769E9" ManuallyRouted="false" />
+        <AssociationConnector Association="db_ProjectGladiatorModel.FK__tbl_Renew__previ__13F1F5EB" ManuallyRouted="false" />
+        <AssociationConnector Association="db_ProjectGladiatorModel.FK__tbl_Renew__Cust___14E61A24" ManuallyRouted="false" />
+        <AssociationConnector Association="db_ProjectGladiatorModel.FK__tbl_Renew__Veh_I__11158940" ManuallyRouted="false" />
+        <AssociationConnector Association="db_ProjectGladiatorModel.FK__tbl_Vehic__Cust___7E02B4CC" ManuallyRouted="false" />
+        <AssociationConnector Association="db_ProjectGladiatorModel.FK__tbl_Vehic__Veh_M__7D0E9093" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
